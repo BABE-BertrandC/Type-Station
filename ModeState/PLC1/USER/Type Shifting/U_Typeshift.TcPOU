@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="U_Typeshift" Id="{56fc9c9a-9b02-4e44-bfd8-0355cbbf3452}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK U_Typeshift
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Shift01_02		: FB_TypeShift;
+	Shift02_03		: FB_TypeShift;
+	Shift02_04		: FB_TypeShift;
+	Shift03_05		: FB_TypeShift;
+	Shift04_05		: FB_TypeShift;	
+	Shift05_06		: FB_TypeShift;
+	Shift06_07		: FB_TypeShift;	
+	Shift07_08		: FB_TypeShift;
+	Shift08_09		: FB_TypeShift;
+	Shift08_16		: FB_TypeShift;
+	Shift09_10		: FB_TypeShift;
+	Shift10_11		: FB_TypeShift;
+	Shift11_12		: FB_TypeShift;
+	Shift12_13		: FB_TypeShift;
+	Shift13_14		: FB_TypeShift;
+	Shift14_15		: FB_TypeShift;
+	Shift15_01		: FB_TypeShift;
+	Shift16_08		: FB_TypeShift;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// TYPE SHIFTING
+Shift01_02(fromSt:= 1, toSt:= 2);
+Shift02_03(fromSt:= 2, toSt:= 3);
+Shift02_04(fromSt:= 2, toSt:= 4);
+Shift03_05(fromSt:= 3, toSt:= 5);
+Shift04_05(fromSt:= 4, toSt:= 5);
+Shift05_06(fromSt:= 5, toSt:= 6);
+Shift06_07(fromSt:= 6, toSt:= 7);
+// insert part back to line prio to normal flow
+IF NOT typeSt[16].part.scrap THEN
+	Shift16_08(fromSt:= 16, toSt:= 08);
+END_IF
+Shift07_08(fromSt:= 7, toSt:= 8);
+// extract part from line if scrap or continue
+IF NOT typeSt[8].part.scrap THEN
+	Shift08_09(fromSt:= 8, toSt:= 9);
+END_IF
+Shift08_16(fromSt:= 08, toSt:= 16,);
+Shift09_10(fromSt:= 09, toSt:= 10,);
+Shift10_11(fromSt:= 10, toSt:= 11);
+Shift11_12(fromSt:= 11, toSt:= 12);
+Shift12_13(fromSt:= 12, toSt:= 13);
+Shift13_14(fromSt:= 13, toSt:= 14);
+Shift14_15(fromSt:= 14, toSt:= 15);
+Shift15_01(fromSt:= 15, toSt:= 01);
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

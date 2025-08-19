@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="SIM" Id="{51c77c69-2f5c-4ecd-a822-0cf4fc2a5f43}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	active		: BOOL;
+	generate	: BOOL;
+	shift		: BOOL;
+	delete		: BOOL;
+	safetyNOK	: BOOL;
+	fault		: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

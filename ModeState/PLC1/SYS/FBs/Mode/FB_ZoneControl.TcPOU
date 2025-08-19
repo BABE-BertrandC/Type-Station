@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ZoneControl" Id="{c7c4f45e-4a5a-48b3-be29-112050715e18}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ZoneControl
+VAR_INPUT
+	sZoneName 		: STRING := 'ZoneXXX'; // Default name
+    bAutoMode     	: BOOL; // true = request auto
+    bManualMode   	: BOOL; // true = request manual
+    bStart        	: BOOL;
+    bStop         	: BOOL;
+    bReset        	: BOOL;
+	bError			: BOOL;
+	bSelected		: BOOL;
+END_VAR
+
+VAR_OUTPUT
+    eMode         : E_OperatingMode;
+    sStatus       : STRING(255); // for faceplate display
+END_VAR
+
+VAR
+    fbLogger          : FB_ConsoleLogger;
+    fbStateMachine    : FB_ModeStateMachine;
+    bInitDone         : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bInitDone THEN
+    fbStateMachine.SetLogger(fbLogger); // Inject logger
+	fbStateMachine.sSourceName := sZoneName;
+    bInitDone := TRUE;
+END_IF
+
+// Global select all zones
+IF glob.bSelectAll THEN
+	bSelected 	:= TRUE;
+END_IF
+
+// Connect buttons to state machine inputs
+fbStateMachine.bManualReq 	:= bManualMode 	OR (bSelected AND GLOB.bManual);
+fbStateMachine.bAutoReq   	:= bAutoMode 	OR (bSelected AND GLOB.bauto);
+fbStateMachine.bStart		:= bStart		OR (bSelected AND GLOB.bStart);
+fbStateMachine.bStop		:= bStop		OR (bSelected AND GLOB.bStop);
+fbStateMachine.bReset		:= bReset		OR (bSelected AND GLOB.bReset);
+fbStateMachine.bError     	:= bError; 
+
+// Run logic
+fbStateMachine.Run();
+
+// Update outputs
+eMode   := fbStateMachine.eCurrentMode;
+//sStatus := fbLogger.sLastMessage; // Optional — could show most recent log
+sStatus := TO_STRING(fbStateMachine.estate);
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

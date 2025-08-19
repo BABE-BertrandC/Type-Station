@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "UserControl1": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "UC\\GlobCtrl.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/UserControl1"
+    },
+    "Zone": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "UC\\Zone.usercontrol.json",
+      "id": "tchmi:project#/definitions/Zone",
+      "type": "object"
+    },
+    "UserControl1_0": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "UC\\TypeSt.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/UserControl1_0"
+    },
+    "TypeSt": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "UC\\TypeSt.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/TypeSt"
+    },
+    "SA": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "UC\\SA.usercontrol.json",
+      "id": "tchmi:project#/definitions/SA",
+      "type": "object"
+    }
+  }
+}

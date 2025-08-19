@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="test" Id="{547f0d34-3db1-4391-acf0-10e845240c27}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK test
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	DateTime		: DT;
+	getHelp			: NT_GetTime;
+	timeStructure	: TIMESTRUCT;
+	done			: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// DateTime := CURRENT_DT;
+
+IF NOT done THEN
+	getHelp(
+	NETID:= , 
+	START:= , 
+	TMOUT:= , 
+	BUSY=> , 
+	ERR=> , 
+	ERRID=> , 
+	TIMESTR=> timeStructure);
+	done	:= TRUE;	
+END_IF
+
+	getHelp(
+	NETID:= , 
+	START:= TRUE, 
+	TMOUT:= , 
+	BUSY=> , 
+	ERR=> , 
+	ERRID=> , 
+	TIMESTR=> timeStructure);
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

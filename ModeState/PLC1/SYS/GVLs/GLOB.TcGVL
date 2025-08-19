@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GLOB" Id="{22795b31-e4d5-4190-8d90-75899a9009af}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	bStart		: BOOL;
+	bStop		: BOOL;
+	bReset		: BOOL;
+	bAuto		: BOOL;
+	bManual		: BOOL;
+	bFault		: BOOL;
+	bSelectAll	: BOOL;
+	RNR			: INT;
+	bShuttle	: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

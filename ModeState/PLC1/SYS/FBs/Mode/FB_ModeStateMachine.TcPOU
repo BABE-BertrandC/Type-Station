@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ModeStateMachine" Id="{fea6c219-6d63-4c72-bd1b-634d517be252}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ModeStateMachine
+VAR_INPUT
+	sSourceName 	: STRING := 'Unnamed';
+    bManualReq 		: BOOL;
+    bAutoReq   		: BOOL;
+	bStart			: BOOL;
+	bStop			: BOOL;
+	bReset			: BOOL;
+    bError     		: BOOL;
+END_VAR
+
+VAR_OUTPUT
+    eCurrentMode : E_OperatingMode;
+END_VAR
+
+VAR
+    eState       			: E_SystemState := E_SystemState.eState_Init;
+    prevState   			: E_SystemState := E_SystemState.eState_Init;
+    ePreviousNonErrorState 	: E_SystemState := E_SystemState.eState_Manual;
+    logger       : IEventLogger; // Dependency injection
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Run" Id="{a2e6a14c-3d1b-4dae-bccf-17024ae54073}">
+      <Declaration><![CDATA[METHOD Run
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[prevState := eState;
+
+CASE eState OF
+
+    E_SystemState.eState_Init:
+        eCurrentMode := E_OperatingMode.eMode_Manual;
+        eState := E_SystemState.eState_Manual;
+
+    E_SystemState.eState_Manual:
+        eCurrentMode := E_OperatingMode.eMode_Manual;
+        IF bAutoReq THEN
+            eState := E_SystemState.eState_AutoIdle;
+        ELSIF bError THEN
+			ePreviousNonErrorState := eState;
+			eState := E_SystemState.eState_Error;
+        END_IF
+
+	E_SystemState.eState_AutoIdle:
+	    eCurrentMode := E_OperatingMode.eMode_Auto;
+	
+	    IF bStart THEN
+	        eState := E_SystemState.eState_AutoRunning;
+	    ELSIF bManualReq THEN
+	        eState := E_SystemState.eState_Manual;
+	    ELSIF bError THEN
+			ePreviousNonErrorState := eState;
+	        eState := E_SystemState.eState_Error;
+	    END_IF
+	
+	E_SystemState.eState_AutoRunning:
+	    eCurrentMode := E_OperatingMode.eMode_Auto;
+	
+	    IF bStop THEN
+	        eState := E_SystemState.eState_AutoIdle;
+	    ELSIF bManualReq THEN
+	        eState := E_SystemState.eState_Manual;
+	    ELSIF bError THEN
+			ePreviousNonErrorState := eState;
+	        eState := E_SystemState.eState_Error;
+	    END_IF
+
+	E_SystemState.eState_Error:
+	    eCurrentMode := E_OperatingMode.eMode_Error;
+	
+	    IF bReset AND NOT bError THEN
+	        CASE ePreviousNonErrorState OF
+	            E_SystemState.eState_Manual:
+	                eState := E_SystemState.eState_Manual;
+	
+	            E_SystemState.eState_AutoIdle,
+	            E_SystemState.eState_AutoRunning:
+	                eState := E_SystemState.eState_AutoIdle;
+	
+	            ELSE
+	                eState := E_SystemState.eState_Manual;
+	        END_CASE
+	    END_IF
+
+
+END_CASE
+
+IF eState <> prevState THEN
+    logger.LogEvent(sMessage := CONCAT(CONCAT(sSourceName, ' - Transitioned to: '), TO_STRING(eState)));
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetLogger" Id="{cd797ae7-40b4-4627-bbd9-2e8cd283554f}">
+      <Declaration><![CDATA[METHOD SetLogger
+VAR_INPUT
+	fbLogger : IEventLogger;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[logger	:= fbLogger;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

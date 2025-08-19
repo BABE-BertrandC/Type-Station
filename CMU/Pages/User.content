@@ -1,0 +1,20 @@
+<div id="User_1" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="800" data-tchmi-height="640" data-tchmi-zindex="1">
+<div id="UserControl1_2" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="83" data-tchmi-height-unit="px" data-tchmi-left="157" data-tchmi-left-unit="px" data-tchmi-target-user-control="UC/GlobCtrl.usercontrol" data-tchmi-top="450" data-tchmi-top-unit="px" data-tchmi-width="530" data-tchmi-width-unit="px" data-tchmi-zindex="1">
+</div>
+<div id="Zone_2" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="296" data-tchmi-height-unit="px" data-tchmi-left="157" data-tchmi-left-unit="px" data-tchmi-target-user-control="UC/Zone.usercontrol" data-tchmi-top="67" data-tchmi-top-unit="px" data-tchmi-width="144" data-tchmi-width-unit="px" data-tchmi-zone="%s%ADS.PLC1.MAIN.Zone1%/s%" data-tchmi-zindex="1">
+</div>
+<div id="Zone_3" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="296" data-tchmi-height-unit="px" data-tchmi-left="311" data-tchmi-left-unit="px" data-tchmi-target-user-control="UC/Zone.usercontrol" data-tchmi-top="67" data-tchmi-top-unit="px" data-tchmi-width="144" data-tchmi-width-unit="px" data-tchmi-zone="%s%ADS.PLC1.MAIN.Zone2%/s%" data-tchmi-zindex="1">
+</div>
+<div id="Zone_4" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="296" data-tchmi-height-unit="px" data-tchmi-left="465" data-tchmi-left-unit="px" data-tchmi-target-user-control="UC/Zone.usercontrol" data-tchmi-top="67" data-tchmi-top-unit="px" data-tchmi-width="144" data-tchmi-width-unit="px" data-tchmi-zone="%s%ADS.PLC1.MAIN.Zone3%/s%" data-tchmi-zindex="1">
+</div>
+<div id="TcHmiRectangle_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="347" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="129" data-tchmi-width-unit="px" data-tchmi-zindex="1">
+</div>
+<div id="TcHmiTextblock_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="19" data-tchmi-left-unit="px" data-tchmi-text="Simulation" data-tchmi-top="24" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="1">
+</div>
+<div id="TcHmiToggleButton_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="19" data-tchmi-left-unit="px" data-tchmi-text="Global Fault" data-tchmi-top="60" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.GLOB.bFault%/s%" data-tchmi-zindex="1">
+</div>
+<div id="SA_2" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="349" data-tchmi-height-unit="px" data-tchmi-left="144" data-tchmi-left-unit="px" data-tchmi-target-user-control="UC/SA.usercontrol" data-tchmi-top="30" data-tchmi-top-unit="px" data-tchmi-width="488" data-tchmi-width-unit="px" data-tchmi-zindex="0" data-tchmi-sa="%s%ADS.PLC1.U.SA.1%/s%">
+</div>
+<div id="TcHmiToggleButton_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="19" data-tchmi-left-unit="px" data-tchmi-text="Safety NOK" data-tchmi-top="120" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.SIM.safetyNOK%/s%" data-tchmi-zindex="1">
+</div>
+</div>

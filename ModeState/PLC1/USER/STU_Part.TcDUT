@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="STU_Part" Id="{a3e0cd40-cdf8-483c-8df6-59575a72bd5f}">
+    <Declaration><![CDATA[TYPE STU_Part :
+STRUCT
+	user1	: BOOL;
+	user2	: BOOL;
+	user3	: INT;
+	user4	: INT;	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

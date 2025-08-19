@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ConsoleLogger" Id="{0be7e400-a2f1-4c7b-b343-c0d5d3a6bb1d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ConsoleLogger IMPLEMENTS IEventLogger
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	 sLastMessage : STRING(255);
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="LogEvent" Id="{39b26e55-6806-449a-8dca-32cce5ddd8fb}">
+      <Declaration><![CDATA[{analysis 'TcLog'}
+METHOD LogEvent : BOOL
+VAR_INPUT
+	sMessage	: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[sLastMessage := sMessage;
+LogEvent := TRUE; 
+
+ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_HINT, msgFmtStr:= 'My log message: %s', strArg:= sMessage);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Cfg" Id="{f4df4b6c-7779-4bcd-8765-ffa78fb9a2a2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION Cfg
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Naming Safety Area's
+SA[1].name	:= 'SA01';
+
+// Naming Type Station and Design Time
+typeSt[1].name := 'ST010';
+typeSt[1].designTime := 3;
+typeSt[2].name := 'ST020';
+typeSt[3].name := 'ST030 (PRIM)';
+typeSt[3].designTime := 10;
+typeSt[4].name := 'ST035 (SEC)';
+typeSt[4].designTime := 10;
+typeSt[5].name := 'ST040';
+typeSt[6].name := 'ST050';
+typeSt[7].name := 'ST060';
+typeSt[8].name := 'ST070';
+typeSt[9].name := 'ST080';
+typeSt[10].name := 'ST090';
+typeSt[11].name := 'ST100';
+typeSt[12].name := 'ST115';
+typeSt[13].name := 'ST120';
+typeSt[14].name := 'ST130';
+typeSt[15].name := 'ST140';
+typeSt[16].name := 'REPAIR';]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

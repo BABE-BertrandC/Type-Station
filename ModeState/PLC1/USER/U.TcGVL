@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="U" Id="{74252687-bc86-495c-a747-ff25c1c28674}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	MAX_SA_NR	: INT	:= 10;
+	MAX_ST_NR	: INT	:= 30;
+	MAX_VAR_NR	: INT	:= 9;
+	
+END_VAR
+VAR_GLOBAL
+	Fleske		: ARRAY [0..99] OF INT;
+	SA			: ARRAY [0..MAX_SA_NR] OF ST_SA;	
+	typeSt		: ARRAY [0..MAX_ST_NR] OF ST_TypeSt;
+	typeTr		: ARRAY [0..MAX_ST_NR] OF ST_TypeTr;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="U_MAIN" Id="{f64e1143-92d9-4aba-8f2a-567bdd906705}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK U_MAIN
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	initDone	: BOOL;
+	typeshift	: U_typeshift;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT initDone THEN
+	Cfg();
+	initDone := TRUE;	
+END_IF
+
+//calls
+typeshift();
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

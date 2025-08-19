@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_Part" Id="{44a23a29-eb4c-4438-b72b-70c47db83b22}">
+    <Declaration><![CDATA[TYPE ST_Part :
+STRUCT
+	runningNumber	: INT;
+	variant			: INT;
+	ID				: STRING;
+	timeStamp		: INT;
+	route			: INT;
+	scrap			: BOOL;
+	jobs			: DINT;
+	user			: STU_Part;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

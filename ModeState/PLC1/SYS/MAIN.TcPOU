@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{81cb7106-e41e-4ae5-8f62-d10f5f2cd019}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	Simulation		: FB_SIM;
+	TypeControl		: FB_TypeControl;
+	TypeUser		: U_Typeshift;
+	Zone1			: FB_ZoneControl;
+	Zone2			: FB_ZoneControl;
+	Zone3			: FB_ZoneControl;	
+	GenFault		: BOOL;
+	userMain		: U_Main;
+	
+	testing			: test;
+	
+	bInitDone		: BOOL;
+	nCounter		: ULINT;
+	
+	newBool			: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Init
+IF NOT bInitDone THEN
+    // Init Settings
+	Zone1.sZoneName := 'Zone A';
+	Zone2.sZoneName := 'Zone B';
+	Zone3.sZoneName := 'Zone X';
+    bInitDone := TRUE;
+END_IF
+
+
+
+// Calls
+testing();
+Simulation();
+userMain();
+TypeControl();
+Zone1(bError := Glob.bFault);
+Zone2(bError := Glob.bFault);
+Zone3(bError := Glob.bFault);
+
+
+// Running Counter
+nCounter	:=	nCounter + 1;
+
+// control spacie
+Fleske[0] := Fleske[1];
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

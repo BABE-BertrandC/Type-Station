@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_TypeControl" Id="{11167241-3ed9-4333-97e6-a703be450589}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TypeControl
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	initDone	: BOOL;
+	index	: INT;
+	//typeSt010	: REFERENCE OF typeSt[1];
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// TYPE LOOP
+FOR index := 1 TO MAX_ST_NR DO
+	IF typeSt[index].withPart THEN 
+		typeSt[index].nextType := FALSE;
+		typeSt[index].processTime := typeSt[index].processTime + 0.01;
+	ELSE
+		typeSt[index].processTime	:= 0;
+		typeSt[index].jobDone := FALSE;
+		typeSt[index].part	:= typeSt[0].part;
+	END_IF	
+END_FOR
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

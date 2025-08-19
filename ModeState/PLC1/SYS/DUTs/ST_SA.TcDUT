@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_SA" Id="{e0a2e851-3760-433e-9f36-0f7c493cd5f8}">
+    <Declaration><![CDATA[TYPE ST_SA :
+STRUCT
+	name		: STRING;
+	ID			: INT;
+	EstopOK		: BOOL;
+	GatesOK		: BOOL;
+	SafetyOK	: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

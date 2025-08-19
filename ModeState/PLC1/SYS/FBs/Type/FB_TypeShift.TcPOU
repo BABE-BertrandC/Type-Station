@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_TypeShift" Id="{a2ab9e6d-2b63-4ebb-a471-468cf27d201c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TypeShift
+VAR_INPUT
+	index			: INT;
+	fromSt			: INT;
+	toSt			: INT;
+	shuttleAllowed	: BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	enabled			: BOOL;
+	shiftDelay		: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//enabled := NOT typeTr[index].withPart AND NOT typeSt[toSt].withPart AND typeSt[fromSt].jobDone;
+enabled :=	NOT typeSt[toSt].withPart
+			AND typeSt[fromSt].withPart 
+			AND typeSt[fromSt].jobDone 
+			AND NOT typeSt[fromSt].hold;
+
+shiftDelay(IN:= enabled, PT:= T#500MS);
+
+IF shiftDelay.Q THEN
+	typeSt[toSt].part	:= typeSt[fromSt].part;
+	typeSt[fromSt].part	:= typeSt[0].part;
+	//MEMSET(destAddr:= typeSt[1].part, fillByte:= 0, n:= 1);
+	typeSt[toSt].withPart := TRUE;
+	typeSt[FromSt].withPart := FALSE;	
+END_IF
+
+	
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

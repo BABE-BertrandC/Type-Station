@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_SIM" Id="{ea419b76-d326-4dcd-a118-6a1553660084}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SIM
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	generateEnable	: BOOL;
+	shiftEnable		: BOOL;
+	index			: INT;
+	variant			: INT;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// SIM JOB
+IF SIM.active THEN
+	FOR index := 1 TO MAX_ST_NR DO
+		IF typeSt[index].processTime >= typeSt[index].designTime THEN
+			typeSt[index].jobDone := TRUE;
+		END_IF
+	END_FOR
+END_IF
+
+// SIM PART
+variant	:= variant + 1;
+IF variant > MAX_VAR_NR THEN
+	variant := 1;
+END_IF
+generateEnable	:= NOT typeSt[1].withPart;
+IF generateEnable AND SIM.generate THEN
+	GLOB.RNR	:= GLOB.RNR + 1;
+	typeSt[1].part.runningNumber := GLOB.RNR;
+	typeSt[1].part.variant	:= variant;
+	typeSt[1].part.ID		:= 'X2505071630';
+	typeSt[1].withPart	:= TRUE;	
+END_IF
+
+// SIM SHIFT
+shiftEnable 	:= typeSt[1].jobDone AND NOT typeSt[2].withPart;
+IF shiftEnable AND SIM.shift THEN
+	typeSt[2].part	:= typeSt[1].part;
+	typeSt[1].part	:= typeSt[0].part;
+	//MEMSET(destAddr:= typeSt[1].part, fillByte:= 0, n:= 1);
+	typeSt[2].withPart := TRUE;
+	typeSt[1].withPart := FALSE;		
+END_IF
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

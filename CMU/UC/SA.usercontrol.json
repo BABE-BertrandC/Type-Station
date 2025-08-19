@@ -1,0 +1,24 @@
+{
+  "parameters": [
+    {
+      "allowSymbolExpressionsInObject": false,
+      "requiredOnCompile": false,
+      "bindable": true,
+      "propertySetterName": "setSA",
+      "propertyGetterName": "getSA",
+      "refTo": "",
+      "name": "data-tchmi-sa",
+      "displayName": "SA",
+      "visible": true,
+      "type": "tchmi:server#/definitions/ADS-PLC1.ST_SA",
+      "category": "",
+      "description": "",
+      "readOnly": false,
+      "heritable": true,
+      "propertyName": "SA"
+    }
+  ],
+  "virtualRights": [],
+  "$schema": "./../../Packages/Beckhoff.TwinCAT.HMI.Framework.14.3.133/runtimes/native1.12-tchmi/Schema/UserControlConfig.Schema.json",
+  "description": ""
+}

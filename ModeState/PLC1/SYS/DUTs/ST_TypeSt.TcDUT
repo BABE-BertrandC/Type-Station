@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_TypeSt" Id="{a37a1e89-c7cd-4583-95d8-5225c2a16ff6}">
+    <Declaration><![CDATA[TYPE ST_TypeSt :
+STRUCT
+	name		: STRING;
+	part		: ST_Part;
+	withPart	: BOOL;
+	nextType	: BOOL;
+	jobDone		: BOOL;
+	hold		: BOOL;
+	noWork		: BOOL;
+	inPos1		: BOOL;
+	inPos2		: BOOL;
+	processTime	: REAL;
+	designTime	: REAL	:= 5;
+	nextSt		: INT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="IEventLogger" Id="{db077830-80db-4e14-bad0-faab95f85615}">
+    <Declaration><![CDATA[INTERFACE IEventLogger
+]]></Declaration>
+    <Method Name="LogEvent" Id="{b4fe520d-5c5b-4e87-a92b-807a4236d043}">
+      <Declaration><![CDATA[METHOD LogEvent : bool
+VAR_INPUT
+	sMessage : STRING;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
