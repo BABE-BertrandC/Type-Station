@@ -34,7 +34,7 @@ IF generateEnable AND SIM.generate THEN
 	GLOB.RNR	:= GLOB.RNR + 1;
 	typeSt[1].part.runningNumber := GLOB.RNR;
 	typeSt[1].part.variant	:= variant;
-	typeSt[1].part.ID		:= 'X2505071630';
+	typeSt[1].part.ID		:= GLOB.partID;
 	typeSt[1].withPart	:= TRUE;	
 END_IF
 

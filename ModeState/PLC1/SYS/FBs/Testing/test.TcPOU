@@ -7,35 +7,26 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	DateTime		: DT;
-	getHelp			: NT_GetTime;
-	timeStructure	: TIMESTRUCT;
-	done			: BOOL;
+	runOnce				: BOOL	:= TRUE;
+	timeCall			: FB_GetTime;
+	systemTime			: ULINT;
+	timeAsStruct		: TIMESTRUCT;
+	speed				: INT := 1;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// DateTime := CURRENT_DT;
-
-IF NOT done THEN
-	getHelp(
-	NETID:= , 
-	START:= , 
-	TMOUT:= , 
-	BUSY=> , 
-	ERR=> , 
-	ERRID=> , 
-	TIMESTR=> timeStructure);
-	done	:= TRUE;	
+      <ST><![CDATA[IF runOnce THEN
+	runOnce := FALSE;
+	systemTime := F_GetSystemTime();
 END_IF
 
-	getHelp(
-	NETID:= , 
-	START:= TRUE, 
-	TMOUT:= , 
-	BUSY=> , 
-	ERR=> , 
-	ERRID=> , 
-	TIMESTR=> timeStructure);
+//systemTime := F_GetSystemTime();
+systemTime		:= (systemTime + (speed * 100000)); 
+timeAsStruct	:= FILETIME64_TO_SYSTEMTIME(systemTime);
+
+
+timeCall();
+GLOB.partID	:= generatePartID(timeCall.isTime);
 ]]></ST>
     </Implementation>
   </POU>

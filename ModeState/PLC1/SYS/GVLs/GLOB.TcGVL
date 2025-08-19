@@ -12,6 +12,7 @@ VAR_GLOBAL
 	bSelectAll	: BOOL;
 	RNR			: INT;
 	bShuttle	: BOOL;
+	partID		: STRING;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="generatePartID" Id="{2ba8f970-9107-400e-b5fd-be58bd38d569}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION generatePartID : STRING
+VAR_INPUT
+	timeStruct	: TIMESTRUCT;
+END_VAR
+VAR
+	tempString	: STRING;
+	monthString : STRING;
+	dayString	: STRING;
+	hourString	: STRING;
+	minuteString: STRING;
+	secondString: STRING;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[tempString	:= CONCAT('0', TO_STRING(timestruct.wMonth));
+monthString := RIGHT(tempString,2);
+tempString	:= CONCAT('0', TO_STRING(timestruct.wDay));
+dayString 	:= RIGHT(tempString,2);
+tempString	:= CONCAT('0', TO_STRING(timestruct.wHour));
+hourString 	:= RIGHT(tempString,2);
+tempString	:= CONCAT('0', TO_STRING(timestruct.wMinute));
+minuteString:= RIGHT(tempString,2);
+tempString	:= CONCAT('0', TO_STRING(timestruct.wSecond));
+secondString:= RIGHT(tempString,2);
+
+tempString	:= CONCAT(monthString, dayString);
+tempString   := CONCAT(tempString, '-');
+tempString	:= CONCAT(tempString, hourString);
+tempString	:= CONCAT(tempString, minuteString);
+tempString	:= CONCAT(tempString, secondString);
+
+generatePartID:= tempString;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

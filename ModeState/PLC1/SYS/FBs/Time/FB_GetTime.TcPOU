@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_GetTime" Id="{0a23e192-31d5-4049-94df-7586572c33b0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_GetTime
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	isTime			: TIMESTRUCT;
+END_VAR
+VAR
+	ticks			: ULINT;
+	last			: ULINT;
+	start			: BOOL;	
+	getTime			: NT_GetTime;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ticks := ticks + 1;
+
+start := FALSE;
+IF ticks - last > 100 THEN
+	last := ticks;
+	start := TRUE;
+END_IF
+start := start AND NOT getTime.BUSY;
+
+getTime(
+	NETID:= , 
+	START:= start, 
+	TMOUT:= , 
+	BUSY=> , 
+	ERR=> , 
+	ERRID=> , 
+	TIMESTR=> isTime);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
