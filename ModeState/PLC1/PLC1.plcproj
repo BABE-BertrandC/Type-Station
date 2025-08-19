@@ -59,10 +59,10 @@
     <Compile Include="SYS\FBs\Sim\FB_SIM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SYS\FBs\Testing\test.TcPOU">
+    <Compile Include="SYS\FBs\Time\FB_GetTime.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SYS\FBs\Time\FB_GetTime.TcPOU">
+    <Compile Include="SYS\FBs\Time\FB_Time.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SYS\FBs\Type\FB_TypeControl.TcPOU">
@@ -108,7 +108,6 @@
   <ItemGroup>
     <Folder Include="SYS\DUTs" />
     <Folder Include="SYS\FBs\Mode" />
-    <Folder Include="SYS\FBs\Testing" />
     <Folder Include="SYS\FBs\Sim" />
     <Folder Include="SYS\FBs\Time" />
     <Folder Include="SYS\FBs\Type" />

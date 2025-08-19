@@ -10,14 +10,11 @@ VAR
 	Zone2			: FB_ZoneControl;
 	Zone3			: FB_ZoneControl;	
 	GenFault		: BOOL;
-	userMain		: U_Main;
-	
-	testing			: test;
+	userMain		: U_Main;	
+	timing			: FB_Time;
 	
 	bInitDone		: BOOL;
 	nCounter		: ULINT;
-	
-	newBool			: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -31,9 +28,8 @@ IF NOT bInitDone THEN
 END_IF
 
 
-
 // Calls
-testing();
+timing();
 Simulation();
 userMain();
 TypeControl();
@@ -45,8 +41,6 @@ Zone3(bError := Glob.bFault);
 // Running Counter
 nCounter	:=	nCounter + 1;
 
-// control spacie
-Fleske[0] := Fleske[1];
 
 ]]></ST>
     </Implementation>

@@ -9,7 +9,6 @@ VAR_GLOBAL CONSTANT
 	
 END_VAR
 VAR_GLOBAL
-	Fleske		: ARRAY [0..99] OF INT;
 	SA			: ARRAY [0..MAX_SA_NR] OF ST_SA;	
 	typeSt		: ARRAY [0..MAX_ST_NR] OF ST_TypeSt;
 	typeTr		: ARRAY [0..MAX_ST_NR] OF ST_TypeTr;
