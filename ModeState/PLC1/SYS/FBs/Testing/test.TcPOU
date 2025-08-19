@@ -11,7 +11,7 @@ VAR
 	timeCall			: FB_GetTime;
 	systemTime			: ULINT;
 	timeAsStruct		: TIMESTRUCT;
-	speed				: INT := 1;
+	speed				: UINT := 1;
 END_VAR
 ]]></Declaration>
     <Implementation>
